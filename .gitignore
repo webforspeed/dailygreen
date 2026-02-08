@@ -30,3 +30,7 @@ bun-debug.log*
 .vscode/
 *.swp
 *.swo
+
+# Local working notes
+analysis/
+prompts/
