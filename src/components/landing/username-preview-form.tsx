@@ -5,7 +5,7 @@ import { Input } from "../ui/input";
 export function UsernamePreviewForm() {
   return (
     <section className="mb-20 mt-8">
-      <h2 className="block-title mb-2 text-sm lowercase text-neutral-400">preview another username</h2>
+      <h2 className="section-label block-title mb-2 text-sm lowercase">preview another username</h2>
       <Card>
         <form id="username-form" className="flex gap-2">
           <Input id="username" name="username" type="text" placeholder="octocat" autoComplete="off" />

@@ -6,7 +6,7 @@ export function Button({ className, type = "button", ...props }: ButtonHTMLAttri
     <button
       type={type}
       className={cn(
-        "rounded-md bg-emerald-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-700",
+        "ui-button rounded-md px-3 py-2 text-sm font-medium transition-colors",
         className,
       )}
       {...props}

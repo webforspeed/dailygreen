@@ -10,9 +10,9 @@ export function UsageSnippet({ origin, username }: UsageSnippetProps) {
 
   return (
     <section className="mt-10">
-      <h2 className="block-title mb-2 text-sm lowercase text-neutral-400">usage</h2>
+      <h2 className="section-label block-title mb-2 text-sm lowercase">usage</h2>
       <Card>
-        <pre id="snippet" className="overflow-x-auto whitespace-pre-wrap break-all text-[14px] text-neutral-700">
+        <pre id="snippet" className="overflow-x-auto whitespace-pre-wrap break-all text-[14px]">
           {snippet}
         </pre>
       </Card>

@@ -13,6 +13,7 @@ describe("handleRequest", () => {
     expect(response.headers.get("content-type")).toContain("text/html");
     const body = await response.text();
     expect(body).toContain("dailygreen - By webforspeed");
+    expect(body).toContain('id="theme-toggle"');
   });
 
   test("returns svg and cache headers for /:username", async () => {
