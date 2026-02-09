@@ -297,13 +297,13 @@ function LandingPage({ origin }: { origin: string }) {
               <span id="theme-label">Light</span>
             </button>
           </div>
-          <h1 className="page-title mt-8 text-[44px] lowercase leading-[1.03] tracking-[-0.03em]">
+          <h1 className="page-title mt-8 text-[34px] lowercase leading-[1.03] tracking-[-0.03em] sm:text-[40px] md:text-[44px]">
             <span className="font-semibold">dailygreen</span> - by webforspeed
           </h1>
-          <p className="page-subtitle mt-7 text-[36px] font-semibold lowercase leading-[1.15] tracking-[-0.02em]">
+          <p className="page-subtitle mt-5 text-[22px] lowercase leading-[1.2] tracking-[-0.015em] sm:text-[26px] md:text-[28px]">
             GitHub contributions as an SVG image.
           </p>
-          <p className="page-body mt-6 text-[19px] leading-[1.45]">
+          <p className="page-body mt-4 text-[17px] leading-[1.45] sm:text-[18px]">
             Embed your GitHub contribution chart as an SVG image in your{" "}
             <a href="https://github.com/n89nanda">README.md</a>
           </p>
