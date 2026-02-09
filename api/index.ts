@@ -7,9 +7,13 @@ import { validateUsername } from "../src/lib/username";
 
 const ONE_DAY_CACHE_HEADER = "public, max-age=86400, s-maxage=86400";
 
+const FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+<circle cx="18" cy="18" r="18" fill="#d1fae5"/>
+<text x="18" y="19" text-anchor="middle" dominant-baseline="central" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="600" fill="#047857">dg</text>
+</svg>`;
+
 const JUNK_PATH_PREFIXES = ["/wp-", "/.well-known", "/.env", "/cgi-bin", "/admin", "/phpMyAdmin"];
 const JUNK_PATHS = new Set([
-  "/favicon.ico",
   "/robots.txt",
   "/sitemap.xml",
   "/ads.txt",
@@ -33,6 +37,16 @@ export async function handleRequest(request: Request, dependencies: HandlerDepen
   }
 
   const url = new URL(request.url);
+
+  if (url.pathname === "/favicon.ico" || url.pathname === "/favicon.svg") {
+    return new Response(FAVICON_SVG, {
+      status: 200,
+      headers: {
+        "Content-Type": "image/svg+xml",
+        "Cache-Control": "public, max-age=604800, s-maxage=604800",
+      },
+    });
+  }
 
   if (isJunkPath(url.pathname)) {
     return textResponse(404, "Not found.");
