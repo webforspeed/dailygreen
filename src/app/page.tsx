@@ -1,5 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { ChartDemo } from "../components/landing/chart-demo";
+import { Footer } from "../components/landing/footer";
 import { UsageSnippet } from "../components/landing/usage-snippet";
 import { UsernamePreviewForm } from "../components/landing/username-preview-form";
 
@@ -304,6 +305,7 @@ function LandingPage({ origin }: { origin: string }) {
           <UsageSnippet origin={origin} username={demoUser} />
           <ChartDemo origin={origin} username={demoUser} />
           <UsernamePreviewForm />
+          <Footer />
         </main>
 
         <script dangerouslySetInnerHTML={{ __html: LANDING_PAGE_SCRIPT }} />
