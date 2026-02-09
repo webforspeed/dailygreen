@@ -12,8 +12,54 @@ describe("handleRequest", () => {
     expect(response.status).toBe(200);
     expect(response.headers.get("content-type")).toContain("text/html");
     const body = await response.text();
-    expect(body).toContain("dailygreen - By webforspeed");
+    expect(body).toContain("dailygreen | GitHub Contribution Chart SVG Generator");
     expect(body).toContain('id="theme-toggle"');
+    expect(body).toContain('property="og:title" content="dailygreen | GitHub Contribution Chart SVG Generator"');
+    expect(body).toContain('name="twitter:card" content="summary_large_image"');
+    expect(body).toContain('name="robots" content="index, follow, max-image-preview:large"');
+    expect(body).toContain('property="og:site_name" content="dailygreen"');
+    expect(body).toContain('property="og:image" content="http://localhost:3000/social-card.png"');
+    expect(body).toContain('"@type":"WebApplication"');
+  });
+
+  test("returns social preview image", async () => {
+    const response = await handleRequest(new Request("http://localhost:3000/social-card.png"));
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("image/png");
+    expect(response.headers.get("cache-control")).toBe("public, max-age=604800, s-maxage=604800");
+
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    expect(bytes[0]).toBe(0x89);
+    expect(bytes[1]).toBe(0x50);
+    expect(bytes[2]).toBe(0x4e);
+    expect(bytes[3]).toBe(0x47);
+  });
+
+  test("returns robots.txt with sitemap location", async () => {
+    const response = await handleRequest(new Request("http://localhost:3000/robots.txt"));
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("text/plain");
+    expect(response.headers.get("cache-control")).toBe("public, max-age=86400, s-maxage=86400");
+
+    const body = await response.text();
+    expect(body).toContain("User-agent: *");
+    expect(body).toContain("Allow: /");
+    expect(body).toContain("Sitemap: http://localhost:3000/sitemap.xml");
+  });
+
+  test("returns sitemap.xml for homepage", async () => {
+    const response = await handleRequest(new Request("http://localhost:3000/sitemap.xml"));
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("application/xml");
+    expect(response.headers.get("cache-control")).toBe("public, max-age=86400, s-maxage=86400");
+
+    const body = await response.text();
+    expect(body).toContain("<urlset");
+    expect(body).toContain("<loc>http://localhost:3000/</loc>");
+    expect(body).toContain("<changefreq>daily</changefreq>");
   });
 
   test("returns svg and cache headers for /:username", async () => {

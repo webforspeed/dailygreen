@@ -17,6 +17,16 @@ Generate a GitHub-style contribution chart SVG for any public GitHub username.
 - Returns `200`
 - Returns landing HTML
 
+### `GET /robots.txt`
+
+- Returns `200`
+- Returns crawl directives + sitemap URL
+
+### `GET /sitemap.xml`
+
+- Returns `200`
+- Returns XML sitemap for the landing page
+
 ### `GET /:username`
 
 - Returns `200` with SVG content on success
@@ -81,6 +91,8 @@ bun run dev
 
 ```bash
 curl -i http://localhost:3000/
+curl -i http://localhost:3000/robots.txt
+curl -i http://localhost:3000/sitemap.xml
 curl -i http://localhost:3000/n89nanda
 curl -i http://localhost:3000/ab--cd
 ```

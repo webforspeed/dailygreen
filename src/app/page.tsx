@@ -120,6 +120,30 @@ if (form && input && preview && snippetNode && errorNode && submitButton) {
 
 function LandingPage({ origin }: { origin: string }) {
   const demoUser = "n89nanda";
+  const pageTitle = "dailygreen | GitHub Contribution Chart SVG Generator";
+  const pageDescription = "Generate and embed a GitHub contribution chart SVG for any public GitHub username.";
+  const pageUrl = `${origin}/`;
+  const socialImageUrl = `${origin}/social-card.png`;
+  const socialImageAlt = "Preview of the dailygreen GitHub contribution chart generator";
+  const structuredData = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "dailygreen",
+    url: pageUrl,
+    description: pageDescription,
+    image: socialImageUrl,
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Any",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    creator: {
+      "@type": "Organization",
+      name: "webforspeed",
+    },
+  });
 
   return (
     <html lang="en">
@@ -127,11 +151,27 @@ function LandingPage({ origin }: { origin: string }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <title>dailygreen - By webforspeed</title>
-        <meta
-          name="description"
-          content="Generate a GitHub-style contribution SVG for any public GitHub username."
-        />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta name="googlebot" content="index, follow, max-image-preview:large" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f3f3" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1110" />
+        <link rel="canonical" href={pageUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="dailygreen" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:image" content={socialImageUrl} />
+        <meta property="og:image:alt" content={socialImageAlt} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={socialImageUrl} />
+        <meta name="twitter:image:alt" content={socialImageAlt} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
         <script src="https://cdn.tailwindcss.com"></script>
         <script
           dangerouslySetInnerHTML={{
