@@ -34,3 +34,4 @@ bun-debug.log*
 # Local working notes
 analysis/
 prompts/
+.vercel

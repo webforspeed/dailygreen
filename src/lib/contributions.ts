@@ -69,15 +69,21 @@ export async function fetchContributionsMarkup(
 ): Promise<FetchContributionsResult> {
   const endpoint = `${CONTRIBUTIONS_ENDPOINT_BASE}/${encodeURIComponent(username)}/contributions`;
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 4000);
+
   let response: Response;
   try {
     response = await fetchImpl(endpoint, {
       headers: {
         Accept: "text/html,application/xhtml+xml",
       },
+      signal: controller.signal,
     });
   } catch {
     return { ok: false, status: 502, message: "Failed to fetch contribution data." };
+  } finally {
+    clearTimeout(timeout);
   }
 
   if (response.status === 404) {
