@@ -133,6 +133,12 @@ function LandingPage({ origin }: { origin: string }) {
           content="Generate a GitHub-style contribution SVG for any public GitHub username."
         />
         <script src="https://cdn.tailwindcss.com"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };`,
+          }}
+        />
+        <script defer src="/_vercel/insights/script.js"></script>
         <style>{`
           :root {
             color-scheme: light;
